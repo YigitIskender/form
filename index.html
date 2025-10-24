@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAE Şirket Kurulum Formu</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Progress Bar -->
+    <div class="progress-container">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <div class="form-container">
+        <!-- Screen 0: Welcome -->
+        <div class="screen active" data-screen="0">
+            <div class="welcome-content">
+                <h1 class="welcome-title">BAE'de Şirket Kurulum Danışmanlığı</h1>
+                <p class="welcome-subtitle">Size en uygun çözümü sunabilmemiz için birkaç sorumuza cevap verin.</p>
+                <p class="welcome-time">⏱️ Tahmini süre: 3-5 dakika</p>
+                <button type="button" class="btn-primary" onclick="nextScreen()">Başla</button>
+            </div>
+        </div>
+
+        <!-- Screen 1: Q1 - Existing Company -->
+        <div class="screen" data-screen="1">
+            <div class="question-content">
+                <span class="question-number">1 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Mevcut bir şirketiniz var mı?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Evet" onclick="selectOption(this, 'q1')">
+                        <span class="option-text">Evet</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hayır" onclick="selectOption(this, 'q1')">
+                        <span class="option-text">Hayır</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 2: Q2 - Value Creation Area -->
+        <div class="screen" data-screen="2">
+            <div class="question-content">
+                <span class="question-number">2 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Değer yaratma alanınız nedir?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Ticaret" onclick="selectOption(this, 'q2')">
+                        <span class="option-text">Ticaret</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Sanayi" onclick="selectOption(this, 'q2')">
+                        <span class="option-text">Sanayi</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hizmet" onclick="selectOption(this, 'q2')">
+                        <span class="option-text">Hizmet</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 3: Q3 - Business Activity -->
+        <div class="screen" data-screen="3">
+            <div class="question-content">
+                <span class="question-number">3 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Sektör ve iş aktivitenizi açıklayınız</h2>
+                <textarea class="textarea-input" id="q3" rows="6" placeholder="Sektörünüzü ve iş aktivitenizi buraya yazın..."></textarea>
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 4: Q4 - Annual Revenue -->
+        <div class="screen" data-screen="4">
+            <div class="question-content">
+                <span class="question-number">4 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Yıllık cironuz ne kadardır? ($)</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="$0-5M" onclick="selectOption(this, 'q4')">
+                        <span class="option-text">$0 - $5 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$5M-10M" onclick="selectOption(this, 'q4')">
+                        <span class="option-text">$5 - $10 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$10M-15M" onclick="selectOption(this, 'q4')">
+                        <span class="option-text">$10 - $15 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$15M-20M" onclick="selectOption(this, 'q4')">
+                        <span class="option-text">$15 - $20 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$20M+" onclick="selectOption(this, 'q4')">
+                        <span class="option-text">$20 Milyon+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 5: Q5 - Annual Import -->
+        <div class="screen" data-screen="5">
+            <div class="question-content">
+                <span class="question-number">5 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Yıllık ithalatınız ne kadardır? ($)</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="$0-5M" onclick="selectOption(this, 'q5')">
+                        <span class="option-text">$0 - $5 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$5M-10M" onclick="selectOption(this, 'q5')">
+                        <span class="option-text">$5 - $10 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$10M-15M" onclick="selectOption(this, 'q5')">
+                        <span class="option-text">$10 - $15 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$15M-20M" onclick="selectOption(this, 'q5')">
+                        <span class="option-text">$15 - $20 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$20M+" onclick="selectOption(this, 'q5')">
+                        <span class="option-text">$20 Milyon+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 6: Q6 - Annual Export -->
+        <div class="screen" data-screen="6">
+            <div class="question-content">
+                <span class="question-number">6 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Yıllık ihracatınız ne kadardır? ($)</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="$0-5M" onclick="selectOption(this, 'q6')">
+                        <span class="option-text">$0 - $5 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$5M-10M" onclick="selectOption(this, 'q6')">
+                        <span class="option-text">$5 - $10 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$10M-15M" onclick="selectOption(this, 'q6')">
+                        <span class="option-text">$10 - $15 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$15M-20M" onclick="selectOption(this, 'q6')">
+                        <span class="option-text">$15 - $20 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$20M+" onclick="selectOption(this, 'q6')">
+                        <span class="option-text">$20 Milyon+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 7: Q7 - Annual Profitability -->
+        <div class="screen" data-screen="7">
+            <div class="question-content">
+                <span class="question-number">7 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Yıllık kârlılığınız ne kadardır? ($)</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="$0-5M" onclick="selectOption(this, 'q7')">
+                        <span class="option-text">$0 - $5 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$5M-10M" onclick="selectOption(this, 'q7')">
+                        <span class="option-text">$5 - $10 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$10M-15M" onclick="selectOption(this, 'q7')">
+                        <span class="option-text">$10 - $15 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$15M-20M" onclick="selectOption(this, 'q7')">
+                        <span class="option-text">$15 - $20 Milyon</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="$20M+" onclick="selectOption(this, 'q7')">
+                        <span class="option-text">$20 Milyon+</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 8: Q8 - Interested Services (Matrix) -->
+        <div class="screen" data-screen="8">
+            <div class="question-content">
+                <span class="question-number">8 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Bizden almak istediğiniz hizmetler nelerdir?</h2>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Şirket Kuruluşu">
+                        <span class="checkbox-label">Şirket Kuruluşu</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Banka Hesabı Açılışı">
+                        <span class="checkbox-label">Banka Hesabı Açılışı</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Oturma İzni">
+                        <span class="checkbox-label">Oturma İzni</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Ofis Kiralama">
+                        <span class="checkbox-label">Ofis Kiralama</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Muhasebe Hizmetleri">
+                        <span class="checkbox-label">Muhasebe Hizmetleri</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Vergi Danışmanlığı">
+                        <span class="checkbox-label">Vergi Danışmanlığı</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q8" value="Diğer" id="q8Other">
+                        <span class="checkbox-label">Diğer</span>
+                    </label>
+                </div>
+                <input type="text" class="text-input" id="q8OtherText" placeholder="Diğer hizmet adını yazınız" style="margin-top: 1rem; display: none;">
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 9: Q9 - Partnership Type -->
+        <div class="screen" data-screen="9">
+            <div class="question-content">
+                <span class="question-number">9 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Bizimle ne olarak çalışmak istiyorsunuz?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Kurumsal" onclick="selectOption(this, 'q9')">
+                        <span class="option-text">Kurumsal</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Bireysel" onclick="selectOption(this, 'q9')">
+                        <span class="option-text">Bireysel</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Diğer" onclick="selectOption(this, 'q9')">
+                        <span class="option-text">Diğer</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 10: Q10 - Partnership Structure -->
+        <div class="screen" data-screen="10">
+            <div class="question-content">
+                <span class="question-number">10 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Diğer olarak tanımladığınız yapı nedir?</h2>
+                <input type="text" class="text-input" id="q10" placeholder="">
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 11: Q11 - Residence Permit Request -->
+        <div class="screen" data-screen="11">
+            <div class="question-content">
+                <span class="question-number">11 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Oturma izni talebi var mı?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Evet" onclick="selectOption(this, 'q11')">
+                        <span class="option-text">Evet</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hayır" onclick="selectOption(this, 'q11')">
+                        <span class="option-text">Hayır</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 12: Q12 - Number of People (Conditional) -->
+        <div class="screen" data-screen="12">
+            <div class="question-content">
+                <span class="question-number">12 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Kaç kişi için oturma izni talep ediyorsunuz?</h2>
+                <input type="number" class="text-input" id="q12" placeholder="Kişi sayısı" min="1">
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 13: Q13 - Physical Office -->
+        <div class="screen" data-screen="13">
+            <div class="question-content">
+                <span class="question-number">13 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Fiziksel ofis talebi var mı?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Evet" onclick="selectOption(this, 'q13')">
+                        <span class="option-text">Evet</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hayır" onclick="selectOption(this, 'q13')">
+                        <span class="option-text">Hayır</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 14: Q14 - Previous UAE Company -->
+        <div class="screen" data-screen="14">
+            <div class="question-content">
+                <span class="question-number">14 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Daha önce BAE'de şirketiniz oldu mu?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Evet" onclick="selectOption(this, 'q14')">
+                        <span class="option-text">Evet</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hayır" onclick="selectOption(this, 'q14')">
+                        <span class="option-text">Hayır</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 15: Q15 - Previous UAE Residence -->
+        <div class="screen" data-screen="15">
+            <div class="question-content">
+                <span class="question-number">15 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Daha önce BAE'de oturma izniniz oldu mu?</h2>
+                <div class="options-group">
+                    <button type="button" class="option-btn" data-value="Evet" onclick="selectOption(this, 'q15')">
+                        <span class="option-text">Evet</span>
+                    </button>
+                    <button type="button" class="option-btn" data-value="Hayır" onclick="selectOption(this, 'q15')">
+                        <span class="option-text">Hayır</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Screen 16: Q16 - Office Headcount (Conditional) -->
+        <div class="screen" data-screen="16">
+            <div class="question-content">
+                <span class="question-number">16 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Ofiste kaç kişi çalışacak?</h2>
+                <input type="number" class="text-input" id="q16" placeholder="Çalışan sayısı" min="1">
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 17: Q17 - Turkish Banks -->
+        <div class="screen" data-screen="17">
+            <div class="question-content">
+                <span class="question-number">17 <span class="question-total">/ 17</span></span>
+                <h2 class="question-title">Hangi Türk bankalarında hesabınız var?</h2>
+                <div class="checkbox-group">
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Garanti BBVA">
+                        <span class="checkbox-label">Garanti BBVA</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="İş Bankası">
+                        <span class="checkbox-label">İş Bankası</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Akbank">
+                        <span class="checkbox-label">Akbank</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Yapı Kredi">
+                        <span class="checkbox-label">Yapı Kredi</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Ziraat Bankası">
+                        <span class="checkbox-label">Ziraat Bankası</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Halkbank">
+                        <span class="checkbox-label">Halkbank</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Vakıfbank">
+                        <span class="checkbox-label">Vakıfbank</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="QNB Finansbank">
+                        <span class="checkbox-label">QNB Finansbank</span>
+                    </label>
+                    <label class="checkbox-option">
+                        <input type="checkbox" name="q17" value="Diğer" id="q17Other">
+                        <span class="checkbox-label">Diğer</span>
+                    </label>
+                </div>
+                <input type="text" class="text-input" id="q17OtherText" placeholder="Diğer banka adını yazınız" style="margin-top: 1rem; display: none;">
+                <button type="button" class="btn-next" onclick="nextScreen()">Devam Et →</button>
+            </div>
+        </div>
+
+        <!-- Screen 18: Contact Info -->
+        <div class="screen" data-screen="18">
+            <div class="question-content">
+                <span class="question-number">Son Adım</span>
+                <h2 class="question-title">İletişim bilgileriniz</h2>
+                <input type="text" class="text-input" id="fullName" placeholder="Ad Soyad" required>
+                <input type="email" class="text-input" id="email" placeholder="E-posta adresi" required style="margin-top: 1rem;">
+                <input type="tel" class="text-input" id="phone" placeholder="Telefon numarası" style="margin-top: 1rem;">
+                <button type="button" class="btn-submit" onclick="submitForm()">Formu Gönder</button>
+            </div>
+        </div>
+
+        <!-- Success Screen -->
+        <div class="screen" data-screen="success">
+            <div class="success-content">
+                <div class="success-icon">✓</div>
+                <h2 class="success-title">Teşekkür ederiz!</h2>
+                <p class="success-message">Formunuz başarıyla gönderildi. En kısa sürede sizinle iletişime geçeceğiz.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="navigation">
+        <button type="button" class="btn-back" id="btnBack" onclick="prevScreen()" style="display: none;">
+            ← Geri
+        </button>
+    </div>
+
+    <!-- Honeypot for bot protection -->
+    <input type="text" name="honeypot" id="honeypot" style="display: none;" tabindex="-1" autocomplete="off">
+
+    <script src="script.js"></script>
+</body>
+</html>
